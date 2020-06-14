@@ -1,0 +1,13 @@
+@(pageHeader: String, editorMenu: Html = Html(""), grid: Html = Html(""))
+
+@main() {
+    @ui.menu.menu()
+    <br>
+    <br>
+    <br>
+    <div id="main_block" style="vertical-align: sub">
+        @editorMenu
+        <h2>@Html(pageHeader)</h2>
+        @grid
+    </div>
+}

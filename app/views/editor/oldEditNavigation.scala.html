@@ -1,0 +1,13 @@
+@import controllers.actions.MenuItem
+@(base: Option[MenuItem], section: Option[MenuItem], question: Option[MenuItem])
+<a href="@routes.BaseController.list()">Мои базы опроса</a>
+@base.map { b =>
+    -> <a href="@routes.SectionController.list(b.id)">Разделы базы @b.name</a>
+}
+@section.map { s =>
+    -> <a href="@routes.QuestionController.list(s.id)">Вопросы в разделе: @s.name</a>
+}
+@question.map { q =>
+    -> <a href="@routes.AnswerController.list(q.id)">Варианты ответа на вопрос: @q.name</a>
+}
+<hr/>

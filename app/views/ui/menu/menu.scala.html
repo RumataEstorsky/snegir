@@ -1,0 +1,69 @@
+@import ui.menu.menuItem
+@()
+<div id="page_top">
+    <div id="myslidemenu" class="jqueryslidemenu">
+        <ul>
+            @menuItem("Тестирование", routes.UserController.myAvailableTests())
+            <li><a href="#">Для преподавателя</a>
+                <ul>
+                    @menuItem("Мои базы опроса", routes.BaseController.list(),"img/menu/db.png")
+                </ul>
+            </li>
+            <li><a href="#">Для администратора</a>
+                <ul>
+                    @menuItem("Редактор групп", routes.AdminController.groupEditor(),"img/menu/users1.png")
+                    <li><a href="#">Посещаемость</a>
+                        <ul>
+                            @menuItem("Обычным списком", routes.AdminController.sessions1())
+                            @menuItem("Сгруппировано по пользователям", routes.AdminController.sessions2())
+                        </ul>
+                    </li>
+                    <li><a href="#">Лог программы</a>
+                        <ul>
+                            @menuItem("Неудачные авторизации", routes.AdminController.programLog("fail-logins"))
+                            @menuItem("Попытки взлома", routes.AdminController.programLog("crack"))
+                            @menuItem("Низкая производительность", routes.AdminController.programLog("slow-perfomance"))
+                            @menuItem("Ошибки навигации", routes.AdminController.programLog("navigation-errors"))
+                            @menuItem("Ошибки рассылки почты", routes.AdminController.programLog("email-errors"))
+                            @menuItem("Ошибки SQL запросов", routes.AdminController.programLog("sql-errors"))
+                        </ul>
+                    </li>
+                    <li><a href="#">Редактор запросов</a>
+                        <ul>
+                            @menuItem("Редактор SQL-запросов", routes.AdminController.queriesList())
+                            @menuItem("Сохраненные запросы", routes.AdminController.queriesList())
+                        </ul>
+                    </li>
+                    @menuItem("Структура базы данных", routes.AdminController.tablesList())
+                </ul>
+            </li>
+            <li><a href="#">Почта</a>
+                <ul>
+                    @menuItem("Написать письмо", routes.LetterController.write(0, "-"), "img/menu/email.png")
+                    @menuItem("Входящие", routes.LetterController.inputList(), "img/menu/get-mail.png")
+                    @menuItem("Исходящие", routes.LetterController.outputList(), "img/menu/mail-replay.png")
+                </ul>
+            </li>
+            <li><a href="#">Сервис</a>
+                <ul>
+                    @menuItem("Сменить пароль", routes.UserController.changePassword(), "img/menu/protect.png")
+                </ul>
+            </li>
+            <li><a href="#">Статистика</a>
+                <ul>
+                    @menuItem("Статистика входов", routes.UserController.myLogins(), "img/menu/user.png")
+                    @menuItem("Моя успеваемость", routes.UserController.myMarks(0), "img/menu/statics.png")
+                </ul>
+            </li>
+            <li><a href="#">Помощь</a>
+                <ul>
+                    @menuItem("Дополнительные справочные материалы", routes.InfoController.download())
+                    @menuItem("Написать в службу поддержки", routes.LetterController.write(2, "%D0%92%D0%BE%D0%BF%D1%80%D0%BE%D1%81+%D0%B8%D0%BB%D0%B8+%D0%BF%D1%80%D0%BE%D1%81%D1%8C%D0%B1%D0%B0+%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%87%D0%B8%D0%BA%D0%B0%D0%BC"), "img/menu/doc.png")
+                    @menuItem("О программе", routes.InfoController.about(), "img/menu/about.ico")
+                </ul>
+            </li>
+            @menuItem("Выход", routes.AuthController.logout())
+        </ul>
+    </div>
+</div>
+

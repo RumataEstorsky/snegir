@@ -1,0 +1,37 @@
+@import _root_.iskra.grid.RowButton
+@(columnNames: Array[String],
+  values: Iterable[Iterable[Any]],
+  isNumerate: Boolean,
+  doCheckAll: Boolean,
+  actions: Seq[(String, String)] = Seq.empty,
+  hiddens: Map[String, String] = Map.empty,
+  buttons: Seq[RowButton],
+  styles: Map[Int, Map[String, String]],
+  idColumnIndex: Int,
+  clicks: Map[Int, String],
+  formUrl: Option[Call]
+)
+
+
+@easySearch(columnNames)
+
+@formUrl.map{ url =>
+<form id="grid" method="POST" action="@url">
+}
+    <table id="work_table">
+
+        @tableHeader(actions.nonEmpty, isNumerate, columnNames, false)
+
+        @lines(values, columnNames, actions.nonEmpty, isNumerate, doCheckAll, buttons, styles, idColumnIndex,clicks)
+
+    </table>
+
+    @if(actions.nonEmpty) {
+        @actionsForm(actions)
+    }
+
+    @hiddenFormFields(hiddens)
+
+@formUrl.map{ _ =>
+</form>
+}

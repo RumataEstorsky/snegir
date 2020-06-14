@@ -1,0 +1,4 @@
+@(hiddens: Map[String, String])
+@for((k, v) <- hiddens) {
+    <input type='hidden' name='@k' value='@v'>
+}

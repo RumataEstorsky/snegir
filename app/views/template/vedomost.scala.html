@@ -1,0 +1,45 @@
+@import java.time.LocalDate
+@import dto.VedomostRow
+@(baseName: String, groupName: String, sections: Seq[String], students: Seq[VedomostRow], passPercent: Double)
+@iskra.style.header("Ведомость прохождения тестирования.")
+<br>
+    База опроса: "@baseName"
+<br>
+    Группа: "@groupName".
+<br>
+
+<table border=1 cellpadding=0 cellspacing=0>
+  <tr>
+      <th>№ п/п</th>
+      <th>ФИО</th>
+      <th>Исп. попыток</th>
+      <th>Зачетная дата</th>
+      <th>Процент верных</th>
+      <th>Общая оценка</th>
+      @for(i <- 1 to students.head.sections.size) {
+          <th>@i</th>
+      }
+    </tr>
+    @for((s, ind) <- students.zipWithIndex){
+      <tr>
+        <td>@{ind + 1}</td>
+        <td>@s.fullName</td>
+        <td>@s.attemptUsed</td>
+        <td>@s.date</td>
+        <td>@s.percent</td>
+        <td>@s.mark</td>
+        @for(pass <- s.sections) {
+            <td>@if(pass){ + }else{ - }</td>
+        }
+    }
+</table>
+<br>
+Всего сдавало тест - @{students.size}, имеют зачёт по всем разделам - @passPercent.formatted("%.0f%n")%.
+<br>
+Дата выдачи отчета: @{LocalDate.now}
+<br>
+<br>
+  <strong>* - Расшифровка разделов:</strong><br><br>
+  @for((section, index) <- sections.zipWithIndex) {
+    @index - @section<br>
+  }

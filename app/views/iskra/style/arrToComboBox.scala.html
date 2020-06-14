@@ -1,0 +1,7 @@
+@(items: Seq[(String, String)])
+<select name="act" id="act">
+    <option value="no_action">-</option>
+    @for((k,v) <- items) {
+        <option value="@k">@v</option>
+    }
+</select>

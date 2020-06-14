@@ -1,0 +1,42 @@
+@(hiddenInputs: Seq[(String, String)], submitName: String, errors: Seq[String])
+<div class='edit_form'>
+    if( self::isInsert() )
+    $result .= Style::header(self::$_header_insert)
+    else
+    $result .= Style::header(self::$_header_update)
+
+    <form id='@@tableName' name='@@tableName' action='../index.php' method='post'>
+    // заголовок в зависимости от редактирования/добавления
+    //
+    foreach(self::$_arr as $k => $v)
+    {
+    // ошибки, если есть
+    if(isset(self::$_errors[$k]))
+    foreach(self::$_errors[$k] as $e)
+    $result .= $e . "\n"
+    // если есть код записи и первый показ формы, тогда берем из базы
+    if( self::$_edit_id != -1 && self::isFirstShowForm() )
+    $component = self::getFormRow( $k, self::$_stored[$k] )
+    // иначе берем то, что отдал юзер
+    else
+    {
+    if(isset(self::$_arr[$k]['default']) && !isset($_REQUEST[$k]) )
+    $component= self::getFormRow( $k, self::$_arr[$k]['default'] )
+    // если есть вводд пользователя
+    else
+    $component = self::getFormRow( $k, $_REQUEST[$k] )
+    }
+
+    // вставляем div-ы
+    $result .= isset(self::$_arr[$k]['div']) ? sprintf("<div class='%s'>\n%s</div>\n", self::$_arr[$k]['div'], $component) :
+    sprintf("<div class='field'>\n%s</div>\n", $component)
+    } // foreach(...
+
+
+    <div class='edit_form_bottom'>
+        <input type='submit' class='button' value='@submitName'>
+        @for((n,v) <- hiddenInputs) {
+            <input type='hidden' name='@n' value='@v'>
+        }
+    </div>
+</form>

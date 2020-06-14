@@ -1,0 +1,17 @@
+@import helper._
+@(bases: Iterable[(Int, String)], selectedCount: Int)(implicit request: RequestHeader)
+@ui.standardPage {
+    Всего разделов для переноса: <strong>@selectedCount</strong>
+    <br>
+    Выберите в какую базу будем перемещать:
+    @form(routes.SectionController.moveSectionsProc(0)) {
+        <select name="destanation_base_id">
+            @for((id, name) <- bases) {
+                <option value="@id">@name</option>
+            }
+        </select>
+        @CSRF.formField
+        <input type="hidden" name="questions" value="$questions">
+        <input type="submit" value="Переместить">
+    }
+}

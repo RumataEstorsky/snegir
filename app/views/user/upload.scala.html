@@ -1,0 +1,23 @@
+@()
+if($_FILES['userfile']['tmp_name'] != '')
+{
+$md5 = Editor::addImageFile($_FILES['userfile']['name'],$_FILES['userfile']['tmp_name'],$_REQUEST['logical_file_name'])
+if( strlen($md5) == 32 )
+{
+@iskra.style.success("Файл успешно загружен")
+1. Скопируйте расположенную внизу строку в буфер обмена<br>
+2. Закрыв данное окно в редакторе нажмите кнопку "Просмотреть исходный код"<br>
+3. Вставьте из буфера обмена строку в исходный код и снова нажмите кнопку "Просмотреть исходный код"<br>
+Строка:
+<br>
+<strong>" . htmlentities("<img src='show_image.php?id=$md5'>")</strong>
+// TODO + alt="text"
+//$c = "window.onload = function() { window.opener.szURL='show_image.php?id=$md5'; window.close(); }"
+//$c = "window.onload = function() { window.returnValue='show_image.php?id=$md5'; window.close(); }"
+//$c = "window.onload = function() { window.opener.wysiwyg.editorDoc.execCommand('insertImage', false, 'show_image.php?id=7BE16F92537FEDA8019E95F907D70EAD'); window.close(); }"
+Main::$html->addCodeJs($c)
+}
+}else{
+@iskra.style.header("Загрузка изображения")
+    @uploadForm()
+}

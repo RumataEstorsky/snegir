@@ -1,0 +1,4 @@
+@(title: String, url: Call, img: String = "")
+<li>
+    <a href="@url">@if(img.nonEmpty){<img src="@routes.Assets.versioned(img)"/>}@title</a>
+</li>

@@ -1,0 +1,12 @@
+@(isCheckboxes: Boolean, isNumerate: Boolean, columnsNames: Array[String], doSort: Boolean)
+<tr>
+@if(isCheckboxes) {
+    <th></th>
+}
+@if(isNumerate) {
+    <th>№ п/п</th>
+}
+@for(c <- columnsNames) {
+    <th>@if(doSort){<a href='&sort=@c'>@c</a>}else{@c}</th>
+}
+</tr>

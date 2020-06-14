@@ -1,0 +1,19 @@
+@(columnNames: Seq[String])
+<table align='center'>
+    <tr>
+        <td>Поиск:</td>
+        <td>
+            <select name='find_field' id='find_field'>
+            @for(c <- columnNames) {
+                <option value='@c'>@c</option>
+            }
+            </select>
+        </td>
+        <td>
+            <input type='text' id='find_value' name='find_value' size='50'>
+        </td>
+        <td>
+            <input value='Поиск' type='submit'>
+        </td>
+    </tr>
+</table>

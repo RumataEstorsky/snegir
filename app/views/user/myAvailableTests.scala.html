@@ -1,0 +1,19 @@
+@import util.Russian
+@(lettersCount: Int, grid: Html)
+@ui.standardPage {
+    @if(lettersCount > 0) {
+        <div class='info'>
+            В Вашем почтовом ящике (программы Снегирь) имеется
+            <b>
+                @lettersCount
+                @Russian.pluralForm(lettersCount, "новое", "новых", "новых")
+                @Russian.pluralForm(lettersCount, "сообщение", "сообщения", "сообщений")
+            </b>
+            Для перехода нажмите <a href="@routes.LetterController.inputList()">здесь</a>
+        </div>
+    }
+
+    <h2>Выберите базу опроса</h2>
+
+    @grid
+}

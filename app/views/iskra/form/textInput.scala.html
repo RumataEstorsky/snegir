@@ -1,0 +1,4 @@
+@import _root_.iskra.form.Field
+@(f: Field, value: Any)
+<label for="@f.name">@f.progName:</label>
+<input type="text" name="@f.name" size="@f.maxlen" maxlength="@f.maxlen" value="@value">

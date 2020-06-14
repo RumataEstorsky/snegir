@@ -1,0 +1,35 @@
+@import dto.Letter
+@(curUserId: Int, l: Letter)
+@main() {
+    @if(l.toId == curUserId) {
+        <a href="@routes.LetterController.inputList()">Вернуться к списку входящих писем</a>
+    } else {
+        <a href="@routes.LetterController.outputList()">Вернуться к списку исходящих писем</a>
+    }
+    <br>
+    <br>
+    <table border=0>
+        <tr>
+            <td class="letter_left">@if(l.fromId == curUserId) {Адресат} else {Отправитель}:</td>
+            <td><strong>@if(l.fromId == curUserId){@l.toName} else {@l.fromName}</strong></td>
+        </tr>
+        <tr>
+            <td class="letter_left">Дата отправки:</td>
+            <td><strong>@l.sentAt</strong></td>
+        </tr>
+        <tr>
+            <td class="letter_left">Тема:</td>
+            <td><strong>@l.topic</strong></td>
+        </tr>
+        <tr>
+            <td class="letter_left">Содержание письма:</td>
+            <td>@Html(l.context)</td>
+        </tr>
+    </table>
+    @if(l.toId == curUserId) {
+        <br>
+        <a href="@routes.LetterController.write(l.fromId, "На: " + l.topic)">Ответить на письмо</a>
+        <br>
+    }
+
+}

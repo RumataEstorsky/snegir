@@ -1,0 +1,4 @@
+@import _root_.iskra.form.Field
+@(f: Field, value: String)
+<label for="@f.name">@f.progName:</label>
+<input type="checkbox" name="@f.name @if(value=="1"){checked}else{} />

@@ -1,0 +1,8 @@
+@(query: String = "")
+@iskra.style.header("Редактор SQL запросов")
+<form method='post' action='index.php'>
+    Введите SQL запрос:<br>
+    <textarea name='sql' rows='15' cols='100' title='Введите в это поле SQL запрос'>@query</textarea><br>
+    <input type=submit name='submit' value='Выполнить'>
+    <input type='hidden' name='act' value='sql_editor'>
+</form>

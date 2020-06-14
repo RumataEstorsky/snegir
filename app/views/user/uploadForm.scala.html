@@ -1,0 +1,23 @@
+<form enctype="multipart/form-data" action="index.php" method="post">
+    <table align="center">
+        <tr>
+            <td>Файл (размер до 100 Кб):</td>
+            <td>
+                <input name="userfile" size=30 type="file" />
+            </td>
+        </tr>
+        <tr>
+            <td>Название изображения (не обяз.):</td>
+            <td>
+                <input type="text" size=30 name="logical_file_name">
+                <input type="submit" value="Загрузить" />
+            </td>
+        </tr>
+        <tr>
+            <td colspan=2><input type="hidden" name="MAX_FILE_SIZE" value="102400" />
+                <input type="hidden" name="base_id" value="" . $_SESSION["base_id"] . "">
+                <input type="hidden" name="act" value="upload">
+            </td>
+        </tr>
+    </table>
+</form>

@@ -1,0 +1,83 @@
+GET         /                                        controllers.AuthController.login
+GET         /assets/*file                            controllers.Assets.versioned(path="/public", file: Asset)
+
+GET         /admin/tables                            controllers.AdminController.tablesList
+GET         /admin/:table/columns                    controllers.AdminController.columnList(table: String)
+GET         /admin/queries                           controllers.AdminController.queriesList
+
+GET         /admin/groups                            controllers.AdminController.groupEditor
+GET         /admin/groups/:id                        controllers.AdminController.editGroup(id: Int)
+GET         /admin/groups/:id/users                  controllers.AdminController.userList(id: Int)
+POST        /admin/groups/:id/actions                controllers.AdminController.userActions(id: Int)
+
+GET         /admin/users/:id                         controllers.AdminController.editUser(id: Int)
+GET         /admin/users/:id/delete                  controllers.AdminController.deleteUser(id: Int)
+GET         /admin/sessions1                         controllers.AdminController.sessions1
+GET         /admin/sessions2                         controllers.AdminController.sessions2
+GET         /admin/users-statistic/:sessionId        controllers.AdminController.userStatistics(sessionId: Int)
+GET         /admin/log/fail-logins                   controllers.AdminController.programLog(what = "fail-logins")
+GET         /admin/log/cracks                        controllers.AdminController.programLog(what = "crack")
+GET         /admin/log/slow-perfomance               controllers.AdminController.programLog(what = "slow-perfomance")
+GET         /admin/log/navigation-errors             controllers.AdminController.programLog(what = "navigation-errors")
+GET         /admin/log/email-errors                  controllers.AdminController.programLog(what = "email-errors")
+GET         /admin/log/sql-errors                    controllers.AdminController.programLog(what = "sql-errors")
+
+GET         /bases                                   controllers.BaseController.list
+GET         /bases/:id                               controllers.BaseController.edit(id: Int)
+GET         /bases/:id/delete                        controllers.BaseController.delete(id: Int)
+GET         /bases/:id/access                        controllers.BaseController.accessList(id: Int)
+GET         /bases/access/:accessId/delete           controllers.BaseController.deleteAccess(accessId: Int)
+GET         /bases/:baseId/statistic                 controllers.BaseController.statistic(baseId: Int)
+
+GET         /bases/:id/sections                      controllers.SectionController.list(id: Int)
+GET         /sections/move/:baseId                   controllers.SectionController.moveSections(baseId: Int)
+POST        /sections/move/:baseId                   controllers.SectionController.moveSectionsProc(baseId: Int)
+GET         /sections/:id                            controllers.SectionController.edit(id: Int)
+GET         /sections/:id/delete                     controllers.SectionController.delete(id: Int)
+
+GET         /sections/:id/questions                  controllers.QuestionController.list(id: Int)
+GET         /questions/:id                           controllers.QuestionController.edit(id: Int)
+GET         /questions/:id/delete                    controllers.QuestionController.delete(id: Int)
+GET         /questions/move/:sectionId               controllers.QuestionController.moveQuestions(sectionId: Int)
+POST        /questions/move/:sectionId               controllers.QuestionController.moveQuestionsProc(sectionId: Int)
+
+GET         /questions/:questionId/answers           controllers.AnswerController.list(questionId: Int)
+GET         /answers/:id                             controllers.AnswerController.edit(id: Int)
+GET         /answers/:id/delete                      controllers.AnswerController.delete(id: Int)
+
+GET         /bases/:baseId/templates                 controllers.TemplateController.list(baseId: Int)
+GET         /templates/:id/training-sheet            controllers.TemplateController.trainingSheet(id: Int)
+GET         /templates/:id/passes                    controllers.TemplateController.passesList(id: Int)
+GET         /templates/:id                           controllers.TemplateController.edit(id: Int)
+GET         /templates/:id/select-sections           controllers.TemplateController.selectSections(id: Int)
+POST        /templates/:id/actions                   controllers.TemplateController.actions(id: Int)
+GET         /templates/:id/delete                    controllers.TemplateController.delete(id: Int)
+GET         /passes/:id/answers                      controllers.TemplateController.answersInPassList(id: Int)
+
+GET         /login                                   controllers.AuthController.login
+POST        /login                                   controllers.AuthController.authorize
+GET         /logout                                  controllers.AuthController.logout
+GET         /registration                            controllers.AuthController.registration
+POST        /registration                            controllers.AuthController.processRegistration
+
+GET         /download                                controllers.InfoController.download
+GET         /about                                   controllers.InfoController.about
+
+GET         /my/upload                               controllers.UserController.upload
+GET         /my/test                                 controllers.UserController.myAvailableTests
+GET         /my/logins                               controllers.UserController.myLogins
+GET         /my/password                             controllers.UserController.changePassword
+POST        /my/password                             controllers.UserController.changePasswordProc
+GET         /my/progress                             controllers.UserController.myProgress
+GET         /my/marks/:id                            controllers.UserController.myMarks(id: Int)
+
+GET         /letters/:id/read                        controllers.LetterController.read(id: Int)
+GET         /letters/write/:toUserId/:topic          controllers.LetterController.write(toUserId: Int, topic: String)
+GET         /letters/input                           controllers.LetterController.inputList
+GET         /letters/output                          controllers.LetterController.outputList
+GET         /letters/:id/delete                      controllers.LetterController.delete(id: Int)
+
+GET         /opros/start/:templateId                 controllers.OprosController.start(templateId: Int)
+GET         /opros/stop                              controllers.OprosController.stop
+POST        /opros/next                              controllers.OprosController.nextQuestion
+

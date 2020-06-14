@@ -1,0 +1,9 @@
+@import _root_.iskra.grid.RowButton
+@(buttons: Seq[RowButton], idValue: String)
+@for(b <- buttons) {
+<td>
+    <a href="@b.url.format(idValue)" onclick="@b.onClick">
+        <img src="@routes.Assets.versioned(b.img)" alt="@b.hint" title="@b.hint">
+    </a>
+</td>
+}

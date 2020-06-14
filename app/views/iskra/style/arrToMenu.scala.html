@@ -1,0 +1,11 @@
+@(items: Map[String, _], offset: Int = 0)
+
+<ul>
+@for((k,v) <- items) {
+    @if(v.isInstanceOf[Map[String, _]]) {
+        @arrToMenu(v.asInstanceOf[Map[String, _]])
+    } else {
+        <li><a href='@v'>@k</a></li>
+    }
+}
+</ul>

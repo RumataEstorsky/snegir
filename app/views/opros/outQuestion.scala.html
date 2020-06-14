@@ -1,0 +1,26 @@
+@import dto.OutAnswer
+@import helper._
+@( answers: Seq[OutAnswer], showRight: Boolean)(implicit request: RequestHeader)
+@main() {
+    <div class="question_block">
+    @form(routes.OprosController.nextQuestion()) {
+        <div>Раздел теста: @answers.head.section</div>
+        <br/>
+        <div class="question">@answers.head.question</div>
+        <table>
+        @for(a <- answers) {
+            <tr class="@if(showRight && a.isCorrect) {right_answer} else {answer}">
+                <td>
+                    <input id="a@a.answerId" name="a@a.answerId" type="checkbox">
+                </td>
+                <td>
+                    <label for="a@a.answerId">@a.answer</label>
+                </td>
+            </tr>
+        }
+        </table>
+        @CSRF.formField
+        <input class="button" type="submit" value="Ответить">
+    }
+    </div>
+}

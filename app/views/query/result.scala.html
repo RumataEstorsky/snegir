@@ -1,0 +1,14 @@
+if (!$r)
+$result .= Style.error("Ваш запрос содержит ошибку:<br> . mysql_error())
+// Выполнение, если ошибок не найдено
+else
+{
+// TODO столбцов столбца!!!!!!!!!!!!!!!
+$result .= Style.success(sprintf("Ваш запрос выполнен успешно. Получено: %d %s и %d %s. " .
+"Результаты выполнения приведены в таблице:",
+mysql_num_fields($r), Russian.PluralForm(mysql_num_fields($r), "столбец", "столбца", "столбцов"),
+mysql_num_rows($r), Russian.PluralForm(mysql_num_rows($r), "строка", "строки", "строк") ) )
+val g = Grid()
+g.setSQL( $_REQUEST["sql"] )
+$result .= g.printGrid()
+}

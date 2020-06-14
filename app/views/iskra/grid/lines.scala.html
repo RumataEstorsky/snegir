@@ -1,0 +1,35 @@
+@import _root_.iskra.grid.RowButton
+@(values: Iterable[Iterable[Any]],
+  columnsNames: Array[String],
+  isCheckboxes: Boolean,
+  isNumerate: Boolean,
+  doCheckAll: Boolean,
+  buttons: Seq[RowButton],
+  styles: Map[Int, Map[String, String]],
+  idColumnIndex: Int,
+  clicks: Map[Int, String]
+)
+@if(values.isEmpty) {
+    <tr>
+        <td colspan="@columnsNames.size" align="center">(Таблица пуста)</td>
+    </tr>
+}
+@for((row, index) <- values.zipWithIndex) {
+    @defining(row.toList(idColumnIndex).toString) { idValue =>
+    <tr class="@if((index + 1) % 2 == 0){odd}else{even}">
+        @if(isCheckboxes) {
+            <td>
+                <input name=ch[$code] id="ch_$code" type="checkbox" @if(doCheckAll){checked}else{}>
+            </td>
+        }
+        @if(isNumerate) {
+            <td>@(index + 1)</td>
+        }
+        @for((v, colNum) <- row.zipWithIndex) {
+            <td @if(styles.contains(colNum) && styles(colNum).contains(v.toString)){class="@styles(colNum)(v.toString)"}>
+                @if(clicks.contains(colNum)){<a href="@clicks(colNum).format(idValue)">@v</a>}else{@v}
+            </td>
+        }
+        @rowButtons(buttons, idValue)
+    </tr>
+}}

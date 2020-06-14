@@ -1,0 +1,29 @@
+@import helper._
+@(error: Option[String] = None)(implicit messages: Messages, request: RequestHeader)
+@main() {
+    <div class="login">
+        @form(routes.AuthController.authorize()) {
+            <img src="@routes.Assets.versioned("img/snegir.jpg")" alt="Эмблема программы @Messages("app.title")">
+            <p class="snegir_label">@Messages("app.title")</p>
+            <p>Версия: @Messages("app.version")</p>
+            @error.map { e =>
+                <div class='error'>@e</div>
+            }
+            <div class="login_form_header">Введите Ваш логин и пароль</div>
+            <div class="login_form">
+                <div class="field">
+                    <label for="login">Логин:</label>
+                    <input name="login">
+                </div>
+                <div class="field">
+                    <label for="password">Пароль:</label>
+                    <input name="password" type="password">
+                </div>
+                @CSRF.formField
+                <input class="button" type=submit value = "Вход">
+                <input class="button" type="reset" value = "Отмена">
+            </div>
+        }
+        <a href="@routes.AuthController.registration">Зарегистрироваться</a>
+    </div>
+}

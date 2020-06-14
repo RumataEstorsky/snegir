@@ -1,0 +1,42 @@
+@import util.Russian
+@(userName: String,
+        regUsers: Int,
+        blockedUsers: Int,
+        createdBases: Int,
+        uniqueUsers: Int,
+        allEntries: Int,
+        createdGroups: Seq[String],
+        dailyLogins: Seq[String],
+)
+
+
+Здравствуйте, @userName!
+
+Это ежедневная автоматическая рассылка для администратора сайта Снегирь.
+
+За прошедшие сутки на сайте было:
+
+ - зарегистрировано @regUsers @Russian.pluralForm(regUsers, "пользователь", "пользователя", "пользователей")
+ - из них них блокировано @blockedUsers @Russian.pluralForm(blockedUsers, "пользователь", "пользователя", "пользователей")
+ - создано @createdBases @Russian::pluralForm(createdBases, "база", "базы", "баз")  опроса
+ - на сайт @Russian::pluralForm(uniqueUsers, "заходил", "", "заходили") @uniqueUsers @Russian::PluralForm(uniqueUsers, "пользователь", "пользователя", "пользователей"),
+
+выполнив в общей сложности @allEntries  @Russian::pluralForm($all_entries, "вход", "входа", "входов")
+
+
+@if(createdGroups.nonEmpty) {
+ Созданы следующие группы:
+ @for(g <- createdGroups) {
+  - @g
+ }
+}
+
+Статистика Ваших входов за сутки (ПРОСМОТРИТЕ ВНИМАТЕЛЬНО, вдруг входят под Вашим паролем!):
+@for(l <- dailyLogins) {
+ @l
+}
+
+Безопасность и контроль взлома не проверялись.
+Это письмо создано роботом и отвечать на него не нужно.
+
+Робот сайта Снегирь.

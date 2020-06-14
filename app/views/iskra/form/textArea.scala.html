@@ -1,0 +1,11 @@
+@import _root_.iskra.form.Field
+@(v: Field)
+$result = sprintf("<label for='%s'>%s:</label><textarea id='%s' name='%s' cols='%d' rows='%d'>%s</textarea>\n",
+$v['name'], $v['prog_name'], $v['name'], $v['name'],
+isset($v['cols']) ? $v['cols'] : 80,
+isset($v['rows']) ? $v['rows'] : 7,
+$value
+)
+if( 'richtext' == $v['div'] )
+$result = "<div class='prosto_tak'>\n$result</div>\n"; // TODO все это не правильно!
+return $result

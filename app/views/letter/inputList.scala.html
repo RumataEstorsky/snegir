@@ -1,0 +1,12 @@
+@(grid: Html)
+
+@ui.standardPage {
+    <h2>Моя входящая корреспонденция:</h2>
+
+    <img src="@routes.Assets.versioned("img/modes/get-mail.png")">
+    <a href="@routes.LetterController.write(0, "-")"><strong>Написать новое письмо</strong></a>
+    <br>
+    <br>
+
+    @grid
+}

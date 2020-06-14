@@ -1,0 +1,2 @@
+@(a: (String, String, String))
+<li><a href="@a._3">@if(a._2.nonEmpty) { <img src="@routes.Assets.versioned(a._2)" } @a._1</a></li>

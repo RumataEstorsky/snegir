@@ -1,0 +1,25 @@
+app.title=Снегирь - программа опроса
+app.version=3.0
+app.author=КБ "Ласточка"
+
+
+
+grid.sql_list_bases_edit.base_id=УН базы
+grid.sql_list_bases_edit.base=Название базы
+grid.sql_list_bases_edit.access_type=Тип доступа
+grid.sql_list_bases_edit.general_author=Основной автор
+grid.sql_list_bases_edit.sections_count=Разделов
+grid.sql_list_bases_edit.templates_count=Шаблонов
+grid.sql_list_bases_edit.professors_count=Препод.
+grid.sql_list_bases_edit.create_time=Дата создания
+grid.sql_list_bases_edit.commentary=Комментарий
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,6 @@
+@import _root_.iskra.form.Field
+@(f: Field)
+<label for="@f.name">@f.progName:</label>
+<select name="@f.name">
+            SQL::toComboBox($v["sql_combo"], $value)
+</select>

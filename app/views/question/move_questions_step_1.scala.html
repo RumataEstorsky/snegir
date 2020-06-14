@@ -1,0 +1,16 @@
+@import helper._
+@(sections: Map[Int, String])(implicit request: RequestHeader)
+@ui.standardPage {
+    Всего воросов для переноса: <strong>%d</strong>
+    <br>
+    Выберите в какой раздел будем перемещать:", count($_REQUEST["ch"]))
+
+    @form(routes.QuestionController.moveQuestions(0)) {
+        <select name="destanation_section_id">
+            @sections
+        </select>
+        @CSRF.formField
+        <input type="hidden" name="questions" value="$questions">
+        <input type="submit" value="Переместить">
+    }
+}
