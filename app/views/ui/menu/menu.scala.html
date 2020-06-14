@@ -11,7 +11,7 @@
             </li>
             <li><a href="#">Для администратора</a>
                 <ul>
-                    @menuItem("Редактор групп", routes.AdminController.groupEditor(),"img/menu/users1.png")
+                    @menuItem("Редактор групп", routes.GroupController.list(),"img/menu/users1.png")
                     <li><a href="#">Посещаемость</a>
                         <ul>
                             @menuItem("Обычным списком", routes.AdminController.sessions1())

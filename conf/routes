@@ -5,13 +5,13 @@ GET         /admin/tables                            controllers.AdminController
 GET         /admin/:table/columns                    controllers.AdminController.columnList(table: String)
 GET         /admin/queries                           controllers.AdminController.queriesList
 
-GET         /admin/groups                            controllers.AdminController.groupEditor
-GET         /admin/groups/:id                        controllers.AdminController.editGroup(id: Int)
-GET         /admin/groups/:id/users                  controllers.AdminController.userList(id: Int)
-POST        /admin/groups/:id/actions                controllers.AdminController.userActions(id: Int)
+GET         /admin/groups                            controllers.GroupController.list
+GET         /admin/groups/:id                        controllers.GroupController.edit(id: Int)
+GET         /admin/groups/:id/users                  controllers.GroupController.userList(id: Int)
+POST        /admin/groups/:id/actions                controllers.GroupController.userActions(id: Int)
+GET         /admin/users/:id                         controllers.GroupController.editUser(id: Int)
+GET         /admin/users/:id/delete                  controllers.GroupController.deleteUser(id: Int)
 
-GET         /admin/users/:id                         controllers.AdminController.editUser(id: Int)
-GET         /admin/users/:id/delete                  controllers.AdminController.deleteUser(id: Int)
 GET         /admin/sessions1                         controllers.AdminController.sessions1
 GET         /admin/sessions2                         controllers.AdminController.sessions2
 GET         /admin/users-statistic/:sessionId        controllers.AdminController.userStatistics(sessionId: Int)
